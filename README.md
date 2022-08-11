@@ -14,10 +14,10 @@ This repo is meant to be deployed along with the following repos to create the e
 
 
 # High Level Architecture
-![High Level Architecture](images/aoa-full.png)
+![High Level Architecture](images/aoa-fulla.png)
 
 # What this repo deploys
-![mgmt components](images/aoa-cluster1.png)
+![mgmt components](images/aoa-cluster1a.png)
 
 # Getting Started
 Run:
