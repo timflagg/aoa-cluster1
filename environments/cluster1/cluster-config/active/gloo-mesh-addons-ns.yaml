@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   labels:
     istio.io/rev: 1-13
-  name: bookinfo-backends
+  name: gloo-mesh-addons
