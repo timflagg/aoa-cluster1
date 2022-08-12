@@ -9,8 +9,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ably77/aoa-cluster1/
-    targetRevision: HEAD
-    path: environments/cluster1/infra/active/
+    targetRevision: refactor
+    path: environment/infra/active/
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
