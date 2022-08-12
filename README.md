@@ -31,16 +31,46 @@ Note:
 - Although you may change the contexts where apps are deployed as describe above, the Gloo Mesh and Istio cluster names will remain stable references (i.e. `cluster1`, `cluster1`, and `cluster2`)
 
 # App of Apps Explained
-Platform owners control the deployment of applications into the cluster with the app-of-apps pattern. The app-of-apps pattern uses a generic Argo Application to sync all manifests in a particular Git directory, rather than directly point to a Kustomize, YAML, or Helm configuration.
-
-By using the app-of-app pattern, a Platform Administrator can provide some self-service capabilities to end users by delivering a synced directory in Git (i.e. infra team controls `infra` repo/directory, app team to `app` repo/directory) while still controlling what is ultimately deployed to the cluster and exposed through standard Kubernetes RBAC and Policy. This way, with the right policy in place, Applications are not deployed unless successfully committed Git and pushed to the correctly scoped team repo/directory
+The app-of-apps pattern uses a generic Argo Application to sync all manifests in a particular Git directory, rather than directly point to a Kustomize, YAML, or Helm configuration. Anything pushed into the `environment/<overlay>/active` directory is deployed by it's corresponding app-of-app
 ```
-platform-owners
-└── cluster1
-    ├── cluster1-apps.yaml                      # syncs all apps pushed to environments/cluster1/apps/
-    ├── cluster1-cluster-config.yaml            # syncs all apps pushed to environments/cluster1/cluster-config/
-    ├── cluster1-infra.yaml                     # syncs all apps pushed to environments/cluster1/infra/
-    └── cluster1-mesh-config.yaml               # syncs all apps pushed to environments/cluster1/mesh-config/
+environment
+├── apps
+│   ├── active
+│   │   ├── bookinfo-backends-dyaml.yaml
+│   │   ├── bookinfo-frontends-dyaml.yaml
+│   │   ├── httpbin-in-mesh.yaml
+│   │   └── tls-secret-cert.yaml
+│   ├── apps-aoa.yaml
+├── cluster-config
+│   ├── active
+│   │   ├── bookinfo-backends-ns.yaml
+│   │   ├── bookinfo-frontends-ns.yaml
+│   │   ├── cert-manager-cacerts.yaml
+│   │   ├── cert-manager-ns.yaml
+│   │   ├── cert-manager.yaml
+│   │   ├── gloo-mesh-addons-ns.yaml
+│   │   ├── gloo-mesh-ns.yaml
+│   │   ├── httpbin-ns.yaml
+│   │   ├── httpbin-oidc-client-secret.yaml
+│   │   ├── istio-gateways-ns.yaml
+│   │   ├── istio-system-ns.yaml
+│   │   ├── relay-identity-token-secret.yaml
+│   │   └── relay-root-ca.yaml
+│   ├── cluster-config-aoa.yaml
+└── infra
+    ├── active
+    │   ├── agent-cert.yaml
+    │   ├── clusterissuer.yaml
+    │   ├── gloo-mesh-addons.yaml
+    │   ├── grafana.yaml
+    │   ├── issuer.yaml
+    │   ├── istio-base.yaml
+    │   ├── istio-eastwestgateway.yaml
+    │   ├── istio-ingressgateway.yaml
+    │   ├── istiod-1-13.yaml
+    │   ├── kiali.yaml
+    │   └── prometheus.yaml
+    ├── infra-aoa.yaml
 ```
 
 # forking this repo
