@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/ably77/aoa-cluster1/
+    repoURL: https://github.com/ably77/aoa-cluster2/
     targetRevision: refactor
     path: environment/infra/active/
   destination:
