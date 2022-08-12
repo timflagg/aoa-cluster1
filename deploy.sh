@@ -10,6 +10,8 @@ cluster_context="cluster1"
 # need to call our mgmt server context to discover LB address
 mgmt_context="mgmt"
 gloo_mesh_version="2.0.9"
+# comma separated list
+environment_overlays="cluster-config,infra,apps"
 
 # check to see if defined contexts exist
 if [[ $(kubectl config get-contexts | grep ${mgmt_context}) == "" ]] || [[ $(kubectl config get-contexts | grep ${cluster_context}) == "" ]]; then
