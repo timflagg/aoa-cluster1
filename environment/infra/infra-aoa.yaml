@@ -8,8 +8,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/ably77/aoa-cluster1/
-    targetRevision: HEAD
+    repoURL: https://github.com/ably77/refactor/
+    targetRevision: refactor
     path: environment/infra/active/
   destination:
     server: https://kubernetes.default.svc
