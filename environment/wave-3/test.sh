@@ -1,9 +1,12 @@
 #!/bin/bash
 
-cluster_context="cluster1"
+cluster_context=$(kubectl config current-context)
 
 # wait for completion of bookinfo install
 ./tools/wait-for-rollout.sh deployment productpage-v1 bookinfo-frontends 10 ${cluster_context}
+
+# wait for completion of httpbin install
+./tools/wait-for-rollout.sh deployment in-mesh httpbin 10 ${cluster_context}
 
 # echo port-forward commands
 echo 
