@@ -1,6 +1,6 @@
 # gloo-mesh-demo-aoa
 
-## version 2.1.0-beta18
+## version 2.1.0-beta23
 This repo provides a multitenant capable GitOps workflow structure that can be forked and used to demonstrate the deployment and configuration of a multi-cluster mesh demo as code using the Argo CD app-of-apps pattern.
 
 This repo is meant to be deployed along with the following repos to create the entire High Level Architecture diagram below.
@@ -22,7 +22,7 @@ This repo is meant to be deployed along with the following repos to create the e
 # Getting Started
 Run:
 ```
-./deploy.sh           # deploys on cluster1 cluster
+./deploy.sh $cluster_context          # deploys on cluster1 cluster by default if no input
 ```
 
 Note:
@@ -40,7 +40,6 @@ environment
 │   │   ├── bookinfo-frontends-ns.yaml
 │   │   ├── cert-manager-cacerts.yaml
 │   │   ├── cert-manager-ns.yaml
-│   │   ├── cert-manager.yaml
 │   │   ├── gloo-mesh-addons-ns.yaml
 │   │   ├── gloo-mesh-ns.yaml
 │   │   ├── httpbin-ns.yaml
@@ -49,28 +48,58 @@ environment
 │   │   ├── istio-system-ns.yaml
 │   │   ├── relay-identity-token-secret.yaml
 │   │   └── relay-root-ca.yaml
+│   ├── init.sh
+│   ├── non-active
+│   │   ├── 1.7-cert-manager-crds.yaml
+│   │   ├── cert-manager-cacerts.yaml
+│   │   ├── cert-manager-ns.yaml
+│   │   └── relay-forwarding-identity-token-secret.yaml
+│   ├── test.sh
 │   └── wave-1-aoa.yaml
 ├── wave-2
 │   ├── active
-│   │   ├── agent-cert.yaml
-│   │   ├── clusterissuer.yaml
-│   │   ├── gloo-mesh-addons.yaml
+│   │   └── cert-manager.yaml
+│   ├── init.sh
+│   ├── test.sh
+│   └── wave-2-aoa.yaml
+├── wave-3
+│   ├── active
 │   │   ├── grafana.yaml
-│   │   ├── issuer.yaml
 │   │   ├── istio-base.yaml
 │   │   ├── istio-eastwestgateway.yaml
 │   │   ├── istio-ingressgateway.yaml
 │   │   ├── istiod-1-13.yaml
 │   │   ├── kiali.yaml
-│   │   └── prometheus.yaml
-│   └── wave-2-aoa.yaml
-└── wave-3
+│   │   ├── prometheus.yaml
+│   │   └── tls-secret-cert.yaml
+│   ├── init.sh
+│   ├── test.sh
+│   └── wave-3-aoa.yaml
+├── wave-4
+│   ├── active
+│   │   ├── agent-cert.yaml
+│   │   ├── clusterissuer.yaml
+│   │   ├── gloo-mesh-addons.yaml
+│   │   └── issuer.yaml
+│   ├── init.sh
+│   ├── test.sh
+│   └── wave-4-aoa.yaml
+├── wave-5
+│   ├── active
+│   │   ├── bookinfo-backends-dyaml.yaml
+│   │   └── bookinfo-frontends-dyaml.yaml
+│   ├── init.sh
+│   ├── non-active
+│   │   └── bookinfo-cert.yaml
+│   ├── test.sh
+│   └── wave-5-aoa.yaml
+└── wave-6
     ├── active
-    │   ├── bookinfo-backends-dyaml.yaml
-    │   ├── bookinfo-frontends-dyaml.yaml
     │   ├── httpbin-in-mesh.yaml
-    │   └── tls-secret-cert.yaml
-    └── wave-3-aoa.yaml
+    │   └── httpbin-not-in-mesh.yaml
+    ├── init.sh
+    ├── test.sh
+    └── wave-6-aoa.yaml
 ```
 
 # forking this repo
