@@ -15,6 +15,16 @@ until [ "${SVC}" != "" ]; do
   sleep 2
 done
 
+kubectl apply --context ${mgmt_context} -f- <<EOF
+apiVersion: admin.gloo.solo.io/v2
+kind: KubernetesCluster
+metadata:
+  name: ${cluster_context}
+  namespace: gloo-mesh
+spec:
+  clusterDomain: cluster.local
+EOF
+
 # register clusters to gloo mesh with helm
 kubectl apply --context ${cluster_context} -f- <<EOF
 apiVersion: argoproj.io/v1alpha1
