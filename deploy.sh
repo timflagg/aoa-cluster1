@@ -25,7 +25,7 @@ fi
 if [[ ${gloo_mesh_version} == "" ]]
   then
     # provide license key
-    echo "Please provide the wave name:"
+    echo "Please provide the gloo-mesh agent version to use:"
     read gloo_mesh_version
 fi
 
