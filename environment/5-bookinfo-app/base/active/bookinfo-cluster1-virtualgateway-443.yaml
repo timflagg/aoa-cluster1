@@ -10,7 +10,7 @@ spec:
       number: 443
     tls:
       mode: SIMPLE
-      secretName: tls-secret
+      secretName: bookinfo-tls-secret
   workloads:
   - selector:
       cluster: cluster1
