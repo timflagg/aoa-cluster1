@@ -10,7 +10,7 @@ spec:
       number: 443
     tls:
       mode: SIMPLE
-      secretName: bookinfo-tls-secret
+      secretName: tls-secret
     # specify a host
     #allowedRouteTables:
     #  - host: bookinfo-local.glootest.com
