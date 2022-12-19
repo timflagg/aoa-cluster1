@@ -7,3 +7,13 @@ resources:
 - bookinfo-backends-dyaml.yaml
 - bookinfo-frontends-dyaml.yaml
 - bookinfo-cluster1-virtualgateway-443.yaml
+
+# remove reviews-v3
+patchesStrategicMerge:
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: reviews-v3
+    namespace: bookinfo-backends
+  $patch: delete
