@@ -15,7 +15,7 @@ spec:
     #allowedRouteTables:
     #  - host: bookinfo-local.glootest.com
   workloads:
-  - selector:
+  - selector:  # Selects which Istio Ingress gateway(s) this is configuring
       cluster: cluster1
       labels:
         istio: ingressgateway
